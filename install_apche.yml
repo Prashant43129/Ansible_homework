@@ -1,0 +1,12 @@
+- name: configure apache2
+  hosts: all
+  tasks:
+    - name: call childplaybooks
+      include: "{{item}}"
+      with_items:
+        - child1.yml
+        - child2.yml
+        - child3.yml
+        - child4.yml
+
+

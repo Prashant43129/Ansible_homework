@@ -1,0 +1,7 @@
+---
+- name: ci_cd
+  hosts: devserver
+  become: yes
+  tasks:
+    - name: 
+

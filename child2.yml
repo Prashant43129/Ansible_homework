@@ -1,0 +1,4 @@
+- name: edit index.html
+  copy:
+    content: "oppenhiemer"
+    dest: /var/www/html/index.html     

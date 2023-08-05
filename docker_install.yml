@@ -1,0 +1,14 @@
+---
+- name: Install Docker
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Download Docker installation script
+      shell: "{{item}}"
+      with_items:
+        - "curl -fsSL https://get.docker.com -o install-docker.sh"
+        - "sudo sh install-docker.sh"
+...        
+
+
