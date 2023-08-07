@@ -1,0 +1,18 @@
+---
+- name: delete packages
+  hosts: all
+  become: yes
+  tasks:
+    - name: delete sw's
+      apt:
+        name: "{{item.a}}"
+        state: absent
+        update_cache: "{{item.b}}"
+      with_items:
+        - {a: git, b: yes}
+        - {a: tree, b: no}
+        - {a: maven, b: no}
+        - {a: tomcat9, b: no}
+        - {a: tomcat9-admin, b: no}
+        - {a: openjdk-11-jdk, b: no}
+...          

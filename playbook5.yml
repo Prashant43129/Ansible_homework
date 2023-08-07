@@ -1,11 +1,9 @@
 ---
-- name: Install sw's
-  hosts: all
-  become: yes
+- name: install mvn
+  hosts: appserver
   tasks:
-    - name: install git and tree
+    - name: install mvn
       apt:
         name: "{{a}}"
         state: "{{b}}"
         update_cache: "{{c}}"
-...          

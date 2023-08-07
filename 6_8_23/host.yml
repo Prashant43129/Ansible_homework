@@ -1,0 +1,12 @@
+---
+- name: host info
+  hosts: all
+  tasks: 
+    - name:
+      debug:
+        msg: "{{ansible_host}}"
+    - name:
+      debug:
+        msg: "{{ansible_os_family}}"
+
+...          

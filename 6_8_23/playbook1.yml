@@ -1,0 +1,20 @@
+---
+- name: create a user if not present
+  hosts: all
+  become: yes
+  tasks:
+    - name: find user
+      stat:
+        path: /etc/passwd
+      register: a
+    - name: print above output
+      debug:
+        var: a
+    - name: create user
+      user:
+        name: hari
+        password: 12345
+      when: a.stat.exists == false
+...        
+
+

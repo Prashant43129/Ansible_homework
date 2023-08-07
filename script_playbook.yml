@@ -1,0 +1,12 @@
+- name: run script
+  hosts: all
+  become: yes
+  tasks:
+    - name: copy script file
+      copy:
+        src: /home/ubuntu/script.sh
+        dest: /home/ubuntu
+    - name: run script
+      shell: sh script.sh >> log.txt
+
+

@@ -1,17 +1,16 @@
 ---
-- name: check and create f1
+- name: creating users
   hosts: all
-  tasks:
-    - name: check for file f1 
-      stat:
-        path: /home/ubuntu/f1
-      register: a
-    - name: display o/p of above module
-      debug:
-        var: a
-    - name: create f1 dir
-      file:
-        name: /home/ubuntu/f1
-        state: directory
-      when: a.stat.exists == false
-...        
+  gather_facts: false
+  tasks: 
+     - name: create user
+       user: 
+        name: "{{a}}"
+        password: "{{b}}"
+
+     - name: create a file
+       file:
+         name: "{{c}}"
+         state: "{{d}}"
+...
+

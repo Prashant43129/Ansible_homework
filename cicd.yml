@@ -1,7 +1,35 @@
 ---
-- name: ci_cd
-  hosts: devserver
-  become: yes
+#- name: download and build
+# hosts: devserver
+# become: yes
+#  tasks:
+#   - name: download code
+#     git:
+#       repo: https://github.com/intelliqittrainings/maven.git
+#       dest: /home/ubuntu/project
+#   - name: build code
+#     shell: cd project;mvn package
+#- name: copy artifact
+# hosts: devserver
+# become: yes
+# tasks:
+#   - name: copy artifact
+#     fetch:
+#       src: /home/ubuntu/project/webapp/target/webapp.war 
+#       dest: ..
+- name: copy and test webapp.war
+  hosts: qaserver
   tasks:
-    - name: 
+  - name: copy artifact
+    copy:
+      src: /home/ubuntu/172.31.7.242/home/ubuntu/project/webapp/target/webapp.war
+      dest: /var/lib/tomcat9/webapps/testapp
+  - name: downoad testing.jar file
+    git:
+      repo: https://github.com/intelliqittrainings/FunctionalTesting.git
+      dest: test-git
+  - name: test the app
+    shell: java -jar test-git/testing.jar
+...        
+
 

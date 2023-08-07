@@ -1,0 +1,11 @@
+- name: user creation
+  hosts: servers
+  become: yes
+  tasks:
+    - name: create user
+      user:
+        name: "{{l}}"
+        password: "{{m}}"
+        home: "{{n}}"
+        shell: "{{o}}"
+

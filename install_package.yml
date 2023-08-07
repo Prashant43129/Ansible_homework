@@ -1,0 +1,43 @@
+---
+- name: install packages
+  hosts: devserver
+  become: yes
+  tasks:
+    - name: install sw's
+      apt:
+        name: "{{item.a}}"
+        state: present
+        update_cache: "{{item.b}}"
+      with_items:
+        - {a: git, b: yes}
+        - {a: maven, b: no}
+        - {a: openjdk-11-jdk, b: no}
+- name: insatll packages
+  hosts: qaserver
+  become: yes
+  tasks:
+    - name: install sw's
+      apt:
+        name: "{{item.a}}"
+        state: present
+        update_cache: "{{item.b}}"
+      with_items:
+        - {a: git, b: yes}
+        - {a: openjdk-11-jdk, b: no}
+        - {a: tomcat9, b: no}
+        - {a: tomcat9-admin, b: no}
+- name: insatll packages
+  hosts: prodserver
+  become: yes
+  tasks:
+    - name: install sw's
+      apt:
+        name: "{{item.a}}"
+        state: present
+        update_cache: "{{item.b}}"
+      with_items:
+        - {a: tomcat9, b: yes}
+        - {a: tomcat9-admin, b: no}
+
+
+...

@@ -1,0 +1,20 @@
+---
+- name: get user info and change password
+  hosts: all
+  tasks:
+    - name: retrieve user ingo
+      ansible.builtin.getent:
+       database: passwd
+       key: prashant
+      register: user_info
+    - name: display above o/p
+      debug:
+        var : user_info
+    - name: change passwd
+      user:
+        name: prashant
+        password: abc45
+        update_password: always
+      when: user_info.failed == false
+...      
+

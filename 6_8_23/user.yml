@@ -1,0 +1,21 @@
+---
+- name: Check for ubuntu user and change password if present
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Check if ubuntu user exists
+      getent:
+        database: passwd
+        key: pooja
+      register: user_info
+      ignore_errors: yes
+    - name: print the above output
+      debug:
+        var: user_info
+    - name: create user
+      user:
+        name: pooja
+        password: 12345
+      when: user_info.failed == true
+...        

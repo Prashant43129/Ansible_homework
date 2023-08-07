@@ -1,0 +1,23 @@
+---
+- name: xyx
+  hosts: all
+  become: yes
+  tasks:
+    - name: create directories
+      file:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+      with_items:
+        - {a: /home/ubuntu/folder1,b: directory}
+        - {a: /home/ubuntu/folder2,b: directory}
+        - {a: /home/ubuntu/folder3,b: directory}
+    - name: create files
+      file:
+        name: "{{item}}"
+        state: touch
+      with_items:
+      - /home/ubuntu/folder1/file1
+      - /home/ubuntu/folder2/file2
+      - /home/ubuntu/folder3/file3
+...
+

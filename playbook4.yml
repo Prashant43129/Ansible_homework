@@ -1,11 +1,17 @@
 ---
-- name: Install sw's
+- name: install sw's
   hosts: all
   become: yes
+  gather_facts: false
+  vars:
+    - a : maven
+    - b: present
+    - c: yes
   tasks:
-    - name: install git and tree
+    - name: install maven
       apt:
         name: "{{a}}"
         state: "{{b}}"
         update_cache: "{{c}}"
 ...          
+
